@@ -18,6 +18,10 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     name: Build
+    # Setting working-direcotryy on the job level (Building projects in sub directories)
+    defaults:
+     run: 
+       working-directory: SPExample_SAML_PoC
 # The type of runner that the job will run on
     runs-on: windows-latest
     steps:
@@ -28,13 +32,13 @@ jobs:
           dotnet-version: 5.0.x
       - name: Restore dependencies
         run: dotnet restore
-        working-directory: SPExample_SAML_PoC
+        #working-directory: SPExample_SAML_PoC
       - name: Build
         run: dotnet build --no-restore
         working-directory: SPExample_SAML_PoC
       - name: Test
         run: dotnet test --no-build --verbosity normal
-        working-directory: SPExample_SAML_PoC
+        #working-directory: SPExample_SAML_PoC
       - name: Cache SonarCloud packages
         uses: actions/cache@v1
         with:
@@ -61,5 +65,5 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"AxASoft-Dev_SimpleTestSPSAML" /o:"axasoft-dev" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          SPExample_SAML_PoC\dotnet build --configuration Release
+          dotnet build --configuration Release
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"

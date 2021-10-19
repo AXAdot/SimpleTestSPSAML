@@ -64,4 +64,3 @@ jobs:
           <insert_your_clean_build_command>
           dotnet build --configuration Release
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
-        working-directory: SPExample_SAML_PoC

@@ -35,7 +35,7 @@ jobs:
         #working-directory: SPExample_SAML_PoC
       - name: Build
         run: dotnet build --no-restore
-        working-directory: SPExample_SAML_PoC
+        #working-directory: SPExample_SAML_PoC
       - name: Test
         run: dotnet test --no-build --verbosity normal
         #working-directory: SPExample_SAML_PoC
